@@ -3,8 +3,8 @@ import { Formik } from 'formik';
 import { ContactFormButton, ContactFormError, ContactFormField, ContactFormForm, ContactFormLabel } from './ContactForm.style';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
-import { getContacts } from 'redux/selectors';
 import { addContact } from 'redux/contactsSlice';
+import { selectContacts } from 'redux/selectors';
 
  const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -21,7 +21,7 @@ import { addContact } from 'redux/contactsSlice';
   });
 
 export const ContactForm = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const addNewContact = (newContact, {resetForm}) => {
