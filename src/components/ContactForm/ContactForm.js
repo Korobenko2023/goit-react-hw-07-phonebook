@@ -3,8 +3,8 @@ import { Formik } from 'formik';
 import { ContactFormButton, ContactFormError, ContactFormField, ContactFormForm, ContactFormLabel } from './ContactForm.style';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
-import { addContact } from 'redux/contactsSlice';
 import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 
  const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -49,7 +49,7 @@ export const ContactForm = () => {
               
               <ContactFormError name="name" component="div" />      
               
-            <ContactFormLabel htmlFor="number">Number</ContactFormLabel>
+            <ContactFormLabel htmlFor="number">Phone</ContactFormLabel>
               <ContactFormField id="number" type="tel" name="number" placeholder="+XX..." />
               
             <ContactFormError name="number" component="div" />

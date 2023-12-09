@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectContacts, selectError, selectIsLoading } from "redux/selectors";
 import { useEffect } from "react";
 import { Loader } from "components/Loader/Loader";
+import { fetchContacts } from "redux/operations";
 
 export const App = () => {
    const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export const App = () => {
    const contacts = useSelector(selectContacts);
 
   useEffect(() => {
-    dispatch();
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
@@ -26,9 +27,9 @@ export const App = () => {
          {isLoading && !error && <Loader />}
          {contacts.length > 0 ? (
              <>
-               <AppTitleContact>Contacts list</AppTitleContact>
-               <ContactList />
+               <AppTitleContact>Contacts list</AppTitleContact>              
                <Filter />
+               <ContactList />
              </>
             ) : null}        
         <Toaster position="top-center"/> 
