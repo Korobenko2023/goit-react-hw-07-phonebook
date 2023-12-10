@@ -11,7 +11,7 @@ import { addContact } from 'redux/operations';
     .min(2, 'Name must contain at least 2 characters')
     .max(40, 'Too long name')
     .required('Name is required!'),
-  number: Yup.string()
+  phone: Yup.string()
     .matches(/^\+(?:[0-9] ?){6,14}[0-9]$/, {
       message: 'Invalid Phone Number!',
       excludeEmptyString: false,
@@ -24,7 +24,7 @@ export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
-  const addNewContact = (newContact, {resetForm}) => {
+  const addNewContact = (newContact, { resetForm }) => {
     if (contacts.some(contact => contact.name.toLowerCase() === newContact.name.toLowerCase())) {
       toast.error(`${newContact.name} is already in contacts.`);
       resetForm(); 
@@ -38,7 +38,7 @@ export const ContactForm = () => {
     <Formik
       initialValues={{
         name: '',
-        number: '',
+        phone: '',
       }}
       onSubmit={addNewContact}
       validationSchema={validationSchema}
@@ -49,10 +49,10 @@ export const ContactForm = () => {
               
               <ContactFormError name="name" component="div" />      
               
-            <ContactFormLabel htmlFor="number">Phone</ContactFormLabel>
-              <ContactFormField id="number" type="tel" name="number" placeholder="+XX..." />
+            <ContactFormLabel htmlFor="phone">Phone</ContactFormLabel>
+              <ContactFormField id="phone" type="tel" name="phone" placeholder="+XX..." />
               
-            <ContactFormError name="number" component="div" />
+            <ContactFormError name="phone" component="div" />
 
             <ContactFormButton type="submit">Add contact</ContactFormButton>
         </ContactFormForm>
